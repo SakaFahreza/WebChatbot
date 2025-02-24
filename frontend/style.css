@@ -16,7 +16,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    background-color: #606E8E;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     border-radius: 0px 0px 25px 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -37,16 +38,17 @@ body {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: bolder;
     transition: color 0.3s;
 }
 .nav-links a:hover {
     color: #007bff;
 }
 .login-btn {
-    background-color: #ff4500;
+    background-color: #FF9A8B;
+    background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
     color: #fff !important;
-    padding: 10px 20px;
+    padding: 7px 20px;
     border-radius: 20px;
     font-weight: bold;
 }
@@ -57,19 +59,28 @@ body {
     text-align: center;
     margin-top: 100px;
 }
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
 
 .hero h2 {
     margin-bottom: 20px;
-    font-size: 3rem;
+    font-size: 6rem;
+    color: #2B86C5;
+    opacity: 75%;
 }
 
-button {
-    background-image: linear-gradient(185deg, #4f5459 0, #484a4c 16.67%, #403e3d 33.33%, #36302c 50%, #2c221c 66.67%, #25170f 83.33%, #210c00 100%);
-    padding: 10px 20px;
+.button-strt {
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    border: none;
+    padding: 15px;
+    font-family: 'Poppins', Bold;
+    font-weight: 400;
+    color: #e5e5ea;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    font-family: "Poppins", serif;
 }
 
 .chat-section {
@@ -80,7 +91,8 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #4c6580; /* Warna latar belakang */
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
     border-radius: 15px;
     padding: 20px;
     width: 600px;
@@ -89,16 +101,20 @@ button {
 }
 
 .chat-header {
-    background-color: #708090;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     color: white;
     padding: 10px 20px;
     font-size: 1.5rem;
     font-weight: bold;
     border-radius: 0px 0px 25px 25px;
-    margin-top: -20px;    /* Mengangkat header agar keluar sedikit */
+    margin-top: -19.8px;    /* Mengangkat header agar keluar sedikit */
 }
 .chat-box {
-    background-color: #3a506b;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
     color: white;
     width: 100%;
     padding: 20px;
@@ -108,27 +124,90 @@ button {
 }
 
 .messages {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 13px;
+}
+.messages p{
+    align-self: flex-start;
+    background-color: #e5e5ea;
+    padding: 10px 15px;
+    color: black;
+    border-radius: 15px 15px 15px 0px;
+    word-wrap: break-word;
+}
+.user-message {
+    align-self: flex-end;
+    background-color: #0078ff;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 15px 15px 0px 15px;
+}
+.ai-message {
+    white-space: pre-line;
+    align-self: flex-start;
+    background-color: #e5e5ea;
+    padding: 10px 15px;
+    color: black;
+    border-radius: 15px 15px 15px 0px;
+}
+.ai-message strong {
+     /* Biar judul lebih besar */
+    display: inline; /* Biar bold ada jarak dengan list */
+    font-weight: bold;
+}
+.ai-message ul {
+    padding-left: 20px; /* Biar sejajar */
+    margin: 0;
 }
 
-.chat-box input {
-    width: calc(100% - 50px);
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
+.ai-message ul li {
+    list-style-type: disc; /* Buletan hitam, bukan strip */
+    margin-bottom: 6px;
+    
 }
-.chat-box button {
-    width: calc(100% - 50px);
-    padding: 10px;
-    border-radius: 20px;
-    margin-top: 20px;
+/* Jika ingin nomor tetap rapi */
+.message ol {
+    padding-left: 20px;
+}
+
+.message ol li {
+    margin-bottom: 6px;
     
 }
 
-button {
-    background-color: #61dafb;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+
+.messages {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.chat-box .input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+.chat-box .button {
+    background-color: #0078ff;
+    color: white;
+    font-size: 14px;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    
+}
+
+.button:hover{
+    background-color: #f2ff00;
+}
+

@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Landing Page</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        </style>
+    </style>
 </head>
 <body>
     <div class="container"> 
         <header>
-            
+
             <nav class="navbar">
-                <div class="logo">Nama AI</div>
+                <div class="logo">Cool AI</div>
                 <ul class="nav-links">
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Pricing</a></li>
@@ -24,32 +25,47 @@
                 </ul>
             </nav>
             <div class="hero">
-                <h2>Seamless Conversations,<br>
-                    Smarter Solutions!</h2>
-                <button onclick="goToChat()">Start Chat Now</button>
+                <h1>Seamless Conversations,<br> Smarter Solutions!</h1>
+                <h2 class="name">Cool AI</h2>
+                <img src="image.png" alt="">
+                <button class="button-strt" onclick="goToChat()">Start Chat Now</button>
             </div>
         </header>
 
-        <!-- Desktop 2 -->
-        <section class="chat-section" id="chat-section">
+        <!-- Chat Section -->
+        <section class="chat-section" id="chat-section" style="display: none;">
             <div class="chat-container">
                 <h2 class="chat-header">Chat With Your AI</h2>
-                <div class="chat-box">
+                <div class="chat-box" id="chat-box">
                     <div class="messages">
-                        <p>Lexa: Hi! How can I help you today?</p>
+                        <p>Hi! How can I help you today?</p>
                     </div>
-                    <input type="text" placeholder="Type a message..." />
-                    <button>Send</button>
+                    <input class="input" type="text" id="userInput" placeholder="Type a message...">
+                    <button class="button"id="sendButton">Send
+                        <!-- <i class="fas fa-paper-plane"></i> Ikon kirim -->
+                    </button>
                 </div>
-            </div>
+            </div>  
         </section>
     </div>
+
     <script>
         function goToChat() {
             document.querySelector('.hero').style.display = 'none';
             document.querySelector('#chat-section').style.display = 'block';
         }
+        
+
+        // function appendMessage(sender, message, className) {
+        //     const chatBox = document.querySelector(".messages");
+        //     const messageElement = document.createElement("div");
+        //     messageElement.classList.add("message", className);
+        //     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+        //     chatBox.appendChild(messageElement);
+        //     chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll ke pesan terbaru
+        // }
+
     </script>
-    
+    <script src="../backend/index.js" defer></script>
 </body>
 </html>
