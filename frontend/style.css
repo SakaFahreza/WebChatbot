@@ -95,7 +95,8 @@ body {
     background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
     border-radius: 15px;
     padding: 20px;
-    width: 600px;
+    width: 100%;
+    max-width: 800px;
     margin: 50px auto;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -111,6 +112,8 @@ body {
     margin-top: -19.8px;    /* Mengangkat header agar keluar sedikit */
 }
 .chat-box {
+    width: 100%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -122,14 +125,26 @@ body {
     border-radius: 15px;
     border: 1px solid #61dafb;
 }
+/* Input Container */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 30px;
+    padding: 12px 16px;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
 
 .messages {
+    white-space: pre-line;
     display: flex;
     flex-direction: column;
     gap: 12px;
     max-height: 400px;
     overflow-y: auto;
-    padding: 13px;
+    padding: 15px;
 }
 .messages p{
     align-self: flex-start;
@@ -140,6 +155,7 @@ body {
     word-wrap: break-word;
 }
 .user-message {
+    white-space: pre-line;
     align-self: flex-end;
     background-color: #0078ff;
     padding: 10px 15px;
@@ -188,26 +204,70 @@ body {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-.chat-box .input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 25px;
-    border: 1px solid #ccc;
+.input {
+    flex-grow: 1;
+    border: none;
     outline: none;
+    font-size: 16px;
+    background: transparent;
+    padding: 10px;
+    color: #333;
+}
+/* Placeholder Styling */
+.input::placeholder {
+    color: #999;
     font-size: 14px;
+}
+/* Icon Buttons (Attachment, Gift, Globe) */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #555;
 }
 .chat-box .button {
-    background-color: #0078ff;
-    color: white;
-    font-size: 14px;
+    background: rgb(52, 52, 52);
     border: none;
-    padding: 10px;
-    border-radius: 25px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    justify-content: center;
     cursor: pointer;
-    
 }
-
+.button i {
+    color: white;
+    font-size: 18px;
+}
 .button:hover{
-    background-color: #f2ff00;
+    background-color: skyblue;
+}
+/* Quick Action Buttons */
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.quick-action-button {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: 'Poppins';
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
+.quick-action-button:hover {
+    background: #f0f0f0;
+}
