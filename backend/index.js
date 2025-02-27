@@ -1,5 +1,5 @@
-const API_KEY = "AIzaSyAWDcRqKHnYaj4l1_A7wfL8Cwv7nX5uDm0";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+const API_KEY = "AIzaSyAgqRH8TjiF75KE1zdzbv42kLX3_mykaVs";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Document Loaded!");
@@ -77,3 +77,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+document.getElementById("sendButton").addEventListener("click", function () {
+    let userInput = document.getElementById("userInput");
+    let chatBox = document.getElementById("chat-box");
+    let messages = document.querySelector(".messages");
+    let chatSection = document.getElementById("chat-section");
+
+    // Cek apakah input tidak kosong
+    if (userInput.value.trim() !== "") {
+        // Tambahkan class untuk mengubah layout setelah chat pertama
+        chatSection.classList.add("chat-started");
+
+        // Hapus elemen yang tidak diperlukan setelah pesan pertama
+        setTimeout(() => {
+            document.querySelector(".chat-header").remove();
+            document.querySelector(".quick-actions").remove();
+        }, 500);
+
+        // Tambahkan pesan user ke dalam chat
+        let userMessage = document.createElement("div");
+        userMessage.classList.add("user-message");
+        aiMessage.classList.add("ai-message");
+        userMessage.textContent = userInput.value;
+        messages.appendChild(userMessage);
+
+        // Kosongkan input setelah mengirim
+        userInput.value = "";
+
+        // Scroll otomatis ke bawah
+        messages.scrollTop = messages.scrollHeight;
+    }
+});
+

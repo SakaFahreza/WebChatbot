@@ -8,14 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
     </style>
 </head>
 <body>
+
     <div class="container"> 
         <header>
-
+            <!-- bagian navbar  -->
             <nav class="navbar">
-                <div class="logo">Cool AI</div>
+                <div class="logo">Zitach AI</div>
                 <ul class="nav-links">
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Pricing</a></li>
@@ -25,12 +32,17 @@
                 </ul>
             </nav>
             <div class="hero">
+                <div class="glowing-half-circle"></div>
+                <div class="circle"></div>
+                <div class="glowing-half-circle" style="top: 78%; left: 80%;"></div>
                 <h1>Seamless Conversations,<br> Smarter Solutions!</h1>
-                <h2 class="name">Cool AI</h2>
+                <h2 class="name">Zitach AI</h2>
                 <img src="image.png" alt="">
                 <button class="button-strt" onclick="goToChat()">Start Chat Now</button>
             </div>
         </header>
+        
+        
 
         <!-- Chat Section -->
         <section class="chat-section" id="chat-section" style="display: none;">
@@ -62,16 +74,19 @@
                         <button class="quick-action-button">
                             <i class="fas fa-gift" style="color: teal;"></i> Surprise me
                         </button>
-                        <button class="quick-action-button">More</button>
+                        
                     </div>
                 </div>
+                <p style="color: aliceblue;">By messaging Zitach, you agree to our Terms and Privacy Policy.</p>
             </div>  
         </section>
+        
     </div>
 
     <script>
         function goToChat() {
             document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.navbar').style.display = 'none';
             document.querySelector('#chat-section').style.display = 'block';
         }
         

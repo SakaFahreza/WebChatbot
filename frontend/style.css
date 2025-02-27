@@ -5,9 +5,29 @@
 }
 body {
     font-family: "Poppins", serif;
-    background-color: #fff;
+    background-color: rgb(20, 20, 20);
     display: flex;
+    overflow: hidden;
     justify-content: center;
+}
+.glowing-half-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(150, 120, 255, 0.8) 10%, rgba(10, 10, 26, 0) 80%);
+    border-color: #f0f0f0;
+    border-radius: 50%;
+    bottom: 50%;
+    transform: translateX(-50%);
+}
+.circle {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border: 1px solid #f1fafd;
+    bottom: 25%;
+    border-radius: 50%;
+    transform: translateX(-50%);
 }
 .navbar {
     width: 1000px;
@@ -15,12 +35,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #61dafb;
     padding: 0 40px;
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     border-radius: 0px 0px 25px 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(78, 187, 255, 0.1);
 }
+
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
@@ -38,7 +58,6 @@ body {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
-    font-weight: bolder;
     transition: color 0.3s;
 }
 .nav-links a:hover {
@@ -62,12 +81,13 @@ body {
 .hero h1 {
     font-size: 2rem;
     margin-bottom: 15px;
+    color: #e5e5ea;
 }
 
 .hero h2 {
     margin-bottom: 20px;
     font-size: 6rem;
-    color: #2B86C5;
+    color: #e2e2e2;
     opacity: 75%;
 }
 
@@ -79,31 +99,34 @@ body {
     font-family: 'Poppins', Bold;
     font-weight: 400;
     color: #e5e5ea;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
+
+ /* bagian chat dengan ai */
 
 .chat-section {
     display: none;
     padding: 20px;
+    height: 100vh;
 }
 .chat-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #21D4FD;
-    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    /* background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
     border-radius: 15px;
     padding: 20px;
     width: 100%;
     max-width: 800px;
     margin: 50px auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
 }
 
 .chat-header {
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    /* background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); */
     color: white;
     padding: 10px 20px;
     font-size: 1.5rem;
@@ -117,20 +140,21 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #fff;
-    color: white;
+    color: #233142;
+    /* background-color: #fff;
+    color: white; */
     width: 100%;
     padding: 20px;
     margin-top: 20px;
     border-radius: 15px;
-    border: 1px solid #61dafb;
+    /* border: 1px solid #61dafb; */
 }
 /* Input Container */
 .input-container {
     display: flex;
     align-items: center;
     background: #f5f5f5;
-    border-radius: 30px;
+    border-radius: 15px;
     padding: 12px 16px;
     width: 100%;
     max-width: 800px;
@@ -141,10 +165,11 @@ body {
     white-space: pre-line;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 30px;
     max-height: 400px;
     overflow-y: auto;
-    padding: 15px;
+    padding: 10px 11px;
+    margin: 8px 0px;
 }
 .messages p{
     align-self: flex-start;
@@ -158,7 +183,7 @@ body {
     white-space: pre-line;
     align-self: flex-end;
     background-color: #0078ff;
-    padding: 10px 15px;
+    padding: 10px 11px;
     color: white;
     border-radius: 15px 15px 0px 15px;
 }
@@ -166,7 +191,7 @@ body {
     white-space: pre-line;
     align-self: flex-start;
     background-color: #e5e5ea;
-    padding: 10px 15px;
+    padding: 10px 11px;
     color: black;
     border-radius: 15px 15px 15px 0px;
 }
@@ -258,7 +283,7 @@ body {
     display: flex;
     gap: 6px;
     align-items: center;
-    border-radius: 30px;
+    border-radius: 15px;
     padding: 10px 15px;
     font-size: 14px;
     font-family: 'Poppins';
@@ -270,4 +295,27 @@ body {
 
 .quick-action-button:hover {
     background: #f0f0f0;
+}
+
+/* Saat Chat Dimulai, Input Turun ke Bawah */
+.chat-started .chat-container {
+    justify-content: flex-start;
+    margin-left: 90px;
+    padding: 4px 12px;
+}
+
+/* Sembunyikan Elemen Saat Chat Dimulai */
+.chat-started .chat-header,
+.chat-started .quick-actions,
+.chat-started .p {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Munculkan Area Pesan */
+.chat-started .messages {
+    height: 55vh;
+    width: 650px;
+    padding: 4px 12px;
+    background-color: #1e1e1e;
 }
