@@ -10,8 +10,121 @@ body {
     overflow: hidden;
     justify-content: center;
 }
-.glowing-half-circle {
+/* baru */
+h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    z-index: 1;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.2);
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.image-tembok {
+    position: relative;
+    z-index: 2;
+    margin: -50px 0 30px; /* Menyesuaikan posisi melayang */
+    animation: float 3s ease-in-out infinite;
+}
+
+.image-tembok img {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    object-fit: cover;
+    background: linear-gradient(45deg, #ff00cc, #00ffcc); /* Gradien warna cerah */
+    filter: blur(1px); /* Efek blur halus */
+    opacity: 0.9;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    opacity: 0.7;
+    z-index: 1;
+    max-width: 600px;
+}
+
+.author {
+    font-size: 1rem;
+    opacity: 0.5;
+    z-index: 1;
+    text-transform: lowercase;
+}
+
+/* Efek gradien latar belakang tambahan */
+.tembok::before {
+    content: '';
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+    z-index: 0;
+}
+
+/* Animasi melayang untuk gambar */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+/* Animasi fade-in untuk teks */
+h1, .subtitle, .author {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* sampe sini */
+.grid {
+    position: absolute;
+    top: 15%;
+    left: 75%;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    opacity: 0.3;
+}
+.grid div {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+}
+/* .circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 174, 0, 0.8), rgba(255, 89, 0, 0.2));
+    border-radius: 50%;
+    bottom: 20%;
+    right: 15%;
+    filter: blur(30px);
+} */
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+}
+.glowing-half-circle {
+    position: fixed;
+    overflow: hidden;
     width: 300px;
     height: 300px;
     background: radial-gradient(circle, rgba(150, 120, 255, 0.8) 10%, rgba(10, 10, 26, 0) 80%);
@@ -21,11 +134,12 @@ body {
     transform: translateX(-50%);
 }
 .circle {
-    position: absolute;
+    position: fixed;
+    overflow: hidden;
     width: 340px;
     height: 340px;
     border: 1px solid #f1fafd;
-    bottom: 25%;
+    bottom: 46%;
     border-radius: 50%;
     transform: translateX(-50%);
 }
@@ -57,7 +171,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: color 0.3s;
 }
 .nav-links a:hover {
@@ -79,16 +193,37 @@ body {
     margin-top: 100px;
 }
 .hero h1 {
+    font-family: 'Montserrat';
     font-size: 2rem;
     margin-bottom: 15px;
     color: #e5e5ea;
 }
 
-.hero h2 {
-    margin-bottom: 20px;
-    font-size: 6rem;
-    color: #e2e2e2;
-    opacity: 75%;
+svg {
+    width: 600px;
+    height: 200px;
+}
+
+.grok-text {
+    font-size: 120px;
+    font-family: Arial, sans-serif;
+    fill: transparent; /* Teks utama transparan */
+}
+
+.stroke-animation {
+    stroke: #ffffff; /* Warna stroke ungu muda */
+    stroke-width: 1;
+    opacity: 30%;
+    fill: transparent;
+    stroke-dasharray: 1000; /* Panjang total garis (perlu disesuaikan) */
+    stroke-dashoffset: 2000; /* Mulai dari garis tersembunyi */
+    animation: drawStroke 4s ease-in-out forwards;
+}
+
+@keyframes drawStroke {
+    to {
+        stroke-dashoffset: 0; /* Garis digambar hingga selesai */
+    }
 }
 
 .button-strt {
@@ -300,14 +435,15 @@ body {
 /* Saat Chat Dimulai, Input Turun ke Bawah */
 .chat-started .chat-container {
     justify-content: flex-start;
-    margin-left: 90px;
-    padding: 4px 12px;
+}
+.chat-started p{
+    font-size: 12px;
 }
 
 /* Sembunyikan Elemen Saat Chat Dimulai */
 .chat-started .chat-header,
 .chat-started .quick-actions,
-.chat-started .p {
+.chat-started .foot {
     opacity: 0;
     pointer-events: none;
 }
@@ -316,6 +452,5 @@ body {
 .chat-started .messages {
     height: 55vh;
     width: 650px;
-    padding: 4px 12px;
-    background-color: #1e1e1e;
 }
+

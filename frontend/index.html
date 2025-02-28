@@ -14,11 +14,23 @@
         @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poiret+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Liter&display=swap');
     </style>
 </head>
 <body>
 
     <div class="container"> 
+        <div class="grid">
+            <div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div>
+        </div>
+        <div class="circle"></div>
+        <!-- <div class="text">FREELANCE INDUSTRY REPORT</div> -->
         <header>
             <!-- bagian navbar  -->
             <nav class="navbar">
@@ -36,7 +48,20 @@
                 <div class="circle"></div>
                 <div class="glowing-half-circle" style="top: 78%; left: 80%;"></div>
                 <h1>Seamless Conversations,<br> Smarter Solutions!</h1>
-                <h2 class="name">Zitach AI</h2>
+                
+                    <h1>ZITACH AI</h1>
+                    <div class="image-tembok">
+                        <img src="" alt="Smarter Assistance">
+                    </div>
+                
+                <!-- <svg viewBox="0 0 600 200">
+                    <text x="50" y="150" class="grok-text">
+                        <tspan>Z</tspan><tspan>I</tspan><tspan>T</tspan><tspan>A</tspan><tspan>C</tspan><tspan>H</tspan>
+                    </text>
+                    <text x="50" y="150" class="grok-text">
+                        <tspan class="stroke-animation">Z</tspan><tspan class="stroke-animation">I</tspan><tspan class="stroke-animation">T</tspan><tspan class="stroke-animation">A</tspan><tspan class="stroke-animation">C</tspan><tspan class="stroke-animation">H</tspan>
+                    </text>
+                </svg> -->
                 <img src="image.png" alt="">
                 <button class="button-strt" onclick="goToChat()">Start Chat Now</button>
             </div>
@@ -50,7 +75,7 @@
                 <h2 class="chat-header">Chat With Your AI</h2>
                 <div class="chat-box" id="chat-box">
                     <div class="messages">
-                        <p>Hi! How can I help you today?</p>
+                        <p class="foot">Hi! How can I help you today?</p>
                     </div>
                     <div class="input-container">
                         <button class="icon-button"><i class="fas fa-paperclip"></i></button>
@@ -86,6 +111,7 @@
     <script>
         function goToChat() {
             document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.grid').style.display = 'none';
             document.querySelector('.navbar').style.display = 'none';
             document.querySelector('#chat-section').style.display = 'block';
         }
