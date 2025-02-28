@@ -446,8 +446,9 @@ function showPromptSuggestions(suggestions) {
 
     // Panggil ini sebagai debug awal untuk memeriksa posisi
     console.log("Initial position of suggestions container:", suggestionsContainer.getBoundingClientRect());
+});
 
-    document.getElementById("sendButton").addEventListener("click", function () {
+document.getElementById("sendButton").addEventListener("click", function () {
     let userInput = document.getElementById("userInput");
     let chatBox = document.getElementById("chat-box");
     let messages = document.querySelector(".messages");
@@ -466,8 +467,8 @@ function showPromptSuggestions(suggestions) {
 
         // Tambahkan pesan user ke dalam chat
         let userMessage = document.createElement("div");
-        userMessage.classList.add("user-message");
         aiMessage.classList.add("ai-message");
+        userMessage.classList.add("user-message");
         userMessage.textContent = userInput.value;
         messages.appendChild(userMessage);
 
@@ -476,7 +477,11 @@ function showPromptSuggestions(suggestions) {
 
         // Scroll otomatis ke bawah
         messages.scrollTop = messages.scrollHeight;
-    }})
-
+    }
+});
+document.getElementById("userInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && this.value.trim() !== "") {
+        document.querySelector(".input-container").classList.add("active");
+    }
 });
 

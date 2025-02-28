@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'POLYA';
+    src: url('../frontend/font/POLYA\ Regular\ 400.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +27,7 @@ h1 {
     margin-bottom: 20px;
     z-index: 1;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.2);
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-family: 'POLYA', sans-serif;
 }
 
 .image-tembok {
@@ -234,7 +241,7 @@ svg {
     font-family: 'Poppins', Bold;
     font-weight: 400;
     color: #e5e5ea;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
 }
 
@@ -299,6 +306,11 @@ svg {
     padding: 12px 16px;
     width: 100%;
     margin-top: 0;
+
+    transition: bottom 0.8s ease-in-out;
+}
+.input-container.active {
+    bottom: 50px;
 }
 
 .messages {
@@ -322,17 +334,17 @@ svg {
 .user-message {
     white-space: pre-line;
     align-self: flex-end;
-    background-color: #0078ff;
+    background-color: #e5e5ea;
     padding: 10px 11px;
-    color: white;
+    color: rgb(42, 42, 42);
     border-radius: 15px 15px 0px 15px;
 }
 .ai-message {
     white-space: pre-line;
     align-self: flex-start;
-    background-color: #e5e5ea;
+    /* background-color: #e5e5ea; */
     padding: 10px 11px;
-    color: black;
+    color: rgb(232, 232, 232);
     border-radius: 15px 15px 15px 0px;
 }
 .ai-message strong {
@@ -414,8 +426,8 @@ svg {
 /* Quick Action Buttons */
 .quick-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 6px;
+    margin-top: 10px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -437,12 +449,22 @@ svg {
     background: #f0f0f0;
 }
 
+.foot-p {
+    font-size: 12px;
+}
+
 /* Saat Chat Dimulai, Input Turun ke Bawah */
 .chat-started .chat-container {
-    justify-content: flex-start;
+    justify-content: flex-end;
+    border: 1px solid #333;
+    background: #222;
+    padding: 10px 20px;
 }
-.chat-started p{
+.chat-started .foot-p {
     font-size: 12px;
+    padding-top: 25px;
+    position: fixed;
+    overflow: hidden;
 }
 
 /* Sembunyikan Elemen Saat Chat Dimulai */
@@ -478,7 +500,7 @@ svg {
     width: 100%;
     margin-bottom: 15px;
     padding-left: 16px;
-    border-radius: 30px;
+    border-radius: 20px;
     overflow: hidden;
     background-color: #f5f5f5;
     display: flex;
