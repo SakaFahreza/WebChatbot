@@ -110,18 +110,24 @@ body {
     padding: 20px;
     height: 100vh;
 }
+
 .chat-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     /* background-color: #21D4FD;
     background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 15px; /* Radius kecil untuk container utama jika diperlukan */
     width: 100%;
     max-width: 800px;
     margin: 50px auto;
     /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
+    position: relative; /* Untuk posisi relatif terhadap pratinjau */
+    transition: margin-right 0.3s ease; /* Animasi untuk pergeseran */
+}
+
+.chat-container.preview-active {
+    margin-right: 420px; /* Geser ke kiri sebesar lebar pratinjau (400px + padding) */
 }
 
 .chat-header {
@@ -154,11 +160,10 @@ body {
     display: flex;
     align-items: center;
     background: #f5f5f5;
-    border-radius: 15px;
+    border-radius: 30px; /* Radius melengkung di semua sudut */
     padding: 12px 16px;
     width: 100%;
-    max-width: 800px;
-    position: relative;
+    margin-top: 0;
 }
 
 .messages {
@@ -318,4 +323,299 @@ body {
     width: 650px;
     padding: 4px 12px;
     background-color: #1e1e1e;
+}
+
+#imageInputContainer {
+    margin-top: 10px;
+    display: flex;
+}
+
+#imagePrompt {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Wrapping container untuk input dan suggestions */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-left: 16px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+#suggestionsContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+    padding: 8px 0;
+    margin-top: 5px;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #f503fd;
+    transition: all 0.2s ease;
+}
+
+.suggestion-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Menampilkan elipsis untuk teks yang terlalu panjang */
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+/* Highlight matching text in suggestions - ini akan ditambahkan melalui JavaScript */
+.highlight {
+    font-weight: bold;
+    color: #0078ff;
+}
+
+/* Memperbaiki tampilan container utama input */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 30px;
+    padding: 12px 16px;
+    width: 100%;
+}
+
+#attach-file-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chat-message {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f1f1f1;
+    display: inline-block;
+}
+
+/* Batasi lebar total elemen file agar lebih rapi */
+.uploaded-file {
+    display: flex;
+    align-items: center;
+    background-color: #e9e9e9; /* Sesuaikan dengan warna Grok AI, misalnya #f0f0f0 */
+    border-radius: 15px; /* Radius konsisten dengan Grok AI */
+    padding: 4px 8px; /* Kurangi padding untuk lebih kompak */
+    max-width: 180px; /* Batasi lebar total elemen file */
+    height: 32px; /* Tinggi konsisten untuk tampilan rapi */
+    transition: background-color 0.2s ease;
+}
+
+.uploaded-file:hover {
+    background-color: #ddd; /* Efek hover ringan */
+}
+
+/* Ikon file/gambar */
+.uploaded-image, .file-icon {
+    width: 16px; /* Ukuran ikon lebih kecil seperti Grok AI */
+    height: 16px; /* Ukuran ikon lebih kecil */
+    margin-right: 6px; /* Jarak kecil antara ikon dan nama file */
+    object-fit: cover; /* Pastikan gambar tidak terdistorsi */
+    border-radius: 4px; /* Radius kecil untuk gambar */
+}
+
+/* Styling untuk nama file */
+.file-name {
+    font-size: 12px; /* Ukuran teks kecil seperti Grok AI */
+    color: #333; /* Warna teks yang kontras */
+    white-space: nowrap; /* Pastikan teks tidak pindah baris */
+    overflow: hidden; /* Sembunyikan teks yang meluap */
+    text-overflow: ellipsis; /* Tambahkan "..." untuk teks yang terpotong */
+    flex-grow: 1; /* Biarkan nama file memanjang sesuai ruang tersedia */
+    max-width: 120px; /* Batasi lebar nama file agar lebih pendek dan rapi */
+    cursor: pointer;
+    position: relative; /* Untuk posisi tooltip kustom */
+}
+
+.file-name:hover::after {
+    content: attr(title); /* Menampilkan nilai title sebagai tooltip */
+    position: absolute;
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+    bottom: 100%; /* Posisi di atas elemen */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Tombol hapus */
+.remove-file {
+    background: none;
+    border: none;
+    font-size: 12px; /* Ukuran ikon hapus lebih kecil */
+    cursor: pointer;
+    color: #ff4d4d; /* Warna merah konsisten */
+    margin-left: 6px; /* Jarak kecil dari nama file */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px; /* Padding kecil untuk tombol hapus */
+}
+
+.remove-file:hover {
+    color: #ff0000; /* Efek hover yang lebih terang */
+}
+
+/* Container file */
+#uploaded-files-container {
+    display: none;
+    flex-wrap: wrap; /* Pastikan file berpindah baris jika tidak muat */
+    gap: 6px; /* Jarak kecil antar file */
+    padding: 8px 16px; /* Tambahkan padding kiri dan kanan untuk jarak */
+    width: 100%;
+    background-color: #f5f5f5; /* Sama dengan background input-container */
+    border-radius: 30px 30px 0 0; /* Pastikan radius konsisten */
+    margin-bottom: -8px; /* Overlap dengan input-container */
+}
+
+#uploaded-files-container.files-visible {
+    display: flex;
+}
+
+/* Pastikan container file berada di atas input chat */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-left: 16px; /* Jarak kiri tambahan untuk seluruh wrapper */
+}
+
+/* Pastikan input-container memiliki radius yang menyatu */
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 0 0 30px 30px; /* Radius bulat di sudut bawah */
+    padding: 12px 16px;
+    width: 100%;
+    margin-top: 0; /* Hilangkan jarak dari container file */
+}
+
+.file-size {
+    font-size: 12px; /* Sama dengan .file-name */
+    color: #666; /* Warna yang lebih halus */
+    margin-left: 4px;
+    white-space: nowrap; /* Pastikan tidak berpindah baris */
+}
+
+.file-preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Latar belakang semi-transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Pastikan di atas elemen lain */
+    display: none;
+}
+
+.file-preview-modal img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* Latar belakang putih untuk gambar */
+    max-width: 80%;
+    max-height: 80%;
+}
+
+/* Tambahkan gaya untuk latar belakang pink seperti screenshot */
+.file-preview-modal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('path-to-background-image.jpg') no-repeat center center; /* Ganti dengan path gambar latar belakang pink dari screenshot */
+    background-size: cover;
+    opacity: 0.5; /* Transparansi agar gambar utama tetap terlihat */
+    z-index: -1;
+}
+
+.non-image-preview {
+    position: fixed;
+    top: 60px; /* Jarak dari atas, sesuaikan dengan layout Grok AI */
+    right: 20px; /* Posisi di sisi kanan */
+    width: 400px; /* Lebar pratinjau, sesuaikan dengan Grok AI */
+    height: calc(100vh - 120px); /* Tinggi penuh minus header/footer */
+    background: #fff; /* Latar belakang putih */
+    border-radius: 10px; /* Radius kecil seperti Grok AI */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk estetika */
+    z-index: 1002; /* Pastikan di atas elemen lain */
+    display: none; /* Sembunyikan secara default */
+    overflow: auto; /* Scroll jika konten terlalu panjang */
+}
+
+.preview-content {
+    padding: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+#preview-text {
+    white-space: pre-wrap; /* Menjaga format teks/kode */
+    font-family: 'Courier New', Courier, monospace; /* Font untuk kode/teks */
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+#preview-pdf {
+    border: none;
+}
+
+.preview-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ff4d4d;
+    padding: 4px;
+}
+
+.preview-close:hover {
+    color: #ff0000;
+}
+
+@media (max-width: 600px) {
+    .uploaded-file {
+        max-width: 140px; /* Lebih kecil untuk layar kecil */
+    }
+    .file-name {
+        max-width: 100px; /* Lebih kecil untuk nama file di layar kecil */
+    }
 }
