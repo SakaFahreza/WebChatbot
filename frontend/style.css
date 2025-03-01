@@ -256,16 +256,16 @@ svg {
 .chat-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Ubah dari center ke flex-start untuk align ke kiri */
-    justify-content: center; /* Tetap pusatkan vertikal */
-    height: 100vh; /* Gunakan tinggi penuh viewport */
-    width: 100%; /* Gunakan lebar penuh */
-    max-width: 100%; /* Hapus batasan max-width */
-    margin: 0; /* Hapus margin otomatis */
-    padding: 0; /* Hapus padding untuk lebar penuh */
-    position: relative;
-    transition: all 0.5s ease; /* Transisi halus untuk perubahan layout */
-    background-color: rgb(20, 20, 20);
+    align-items: center;
+    /* background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
+    border-radius: 15px; /* Radius kecil untuk container utama jika diperlukan */
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
+    position: relative; /* Untuk posisi relatif terhadap pratinjau */
+    transition: margin-right 0.3s ease; /* Animasi untuk pergeseran */
 }
 
 .chat-container.preview-active {
@@ -282,29 +282,30 @@ svg {
     border-radius: 0px 0px 25px 25px;
     margin-top: -19.8px;    /* Mengangkat header agar keluar sedikit */
 }
-
 .chat-box {
+    width: 100%;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Ubah dari center ke flex-start */
-    width: 100vw; /* Gunakan lebar penuh viewport */
-    max-width: 100%; /* Hapus batasan max-width */
-    padding: 0; /* Hapus padding untuk lebar penuh */
-    border-radius: 0; /* Hapus radius untuk layout penuh */
-    background-color: transparent; /* Awalnya transparan */
-    transition: all 0.5s ease;
+    gap: 10px;
+    color: #233142;
+    /* background-color: #fff;
+    color: white; */
+    width: 100%;
+    padding: 8px 18px;
+    margin-top: 52px;
+    border-radius: 15px;
+    /* border: 1px solid #61dafb; */
 }
-
 /* Input Container */
 .input-container {
     display: flex;
     align-items: center;
-    background: #f5f5f5;
+    background-color: #7e7e7e;
     border-radius: 30px; /* Radius melengkung di semua sudut */
     padding: 12px 16px;
     width: 100%;
     margin-top: 0;
-
     transition: bottom 0.8s ease-in-out;
 }
 .input-container.active {
@@ -316,20 +317,15 @@ svg {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    max-height: 200px; /* Awalnya kecil */
-    overflow-y: auto; /* Scroll vertikal */
-    padding: 10px 0; /* Padding kecil, hanya di atas/bawah */
-    margin: 0;
-    width: 100vw; /* Gunakan lebar penuh viewport */
-    background-color: transparent; /* Hapus background dari container */
-    border-radius: 0; /* Hapus radius container */
-    transition: all 0.5s ease;
-    animation: fadeIn 1.5s ease-in-out;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px 11px;
+    margin: 8px 0px;
 }
 
 .messages p{
     align-self: flex-start;
-    background-color: #e5e5ea;
+    background-color: #e2e2e2;
     padding: 10px 15px;
     color: black;
     border-radius: 15px 15px 15px 0px;
@@ -337,6 +333,7 @@ svg {
 }
 
 .user-message {
+    white-space: pre-line;
     align-self: flex-end;
     background-color: #e5e5ea;
     padding: 10px 11px;
@@ -345,6 +342,7 @@ svg {
 }
 
 .ai-message {
+    white-space: pre-line;
     align-self: flex-start;
     /* background-color: #e5e5ea; */
     padding: 10px 11px;
@@ -380,6 +378,10 @@ svg {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.messages {
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .input {
@@ -424,7 +426,6 @@ svg {
 .button:hover{
     background-color: skyblue;
 }
-
 /* Quick Action Buttons */
 .quick-actions {
     display: flex;
@@ -432,11 +433,7 @@ svg {
     margin-top: 10px;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100vw; /* Gunakan lebar penuh viewport */
-    opacity: 1; /* Awalnya terlihat */
-    transition: opacity 0.5s ease, height 0.5s ease; /* Transisi untuk menghilang */
 }
-
 .quick-action-button {
     display: flex;
     gap: 6px;
@@ -456,34 +453,23 @@ svg {
 }
 
 .foot-p {
-    font-size: 12px;
+    font-size: 10px;
+    margin-top: 154px;
+    overflow: hidden;
+    opacity: 50%;
 }
 
 /* Saat Chat Dimulai, Input Turun ke Bawah */
 .chat-started .chat-container {
     justify-content: flex-end;
-    border: 1px solid #333;
-    background: #222;
+    /* border: 1px solid #333; */
     padding: 10px 20px;
 }
-
 .chat-started .foot-p {
-    font-size: 12px;
-    padding-top: 25px;
+    font-size: 10px;
+    padding-top: 8px 15px;
     position: fixed;
     overflow: hidden;
-
-    justify-content: flex-start; /* Pindah ke atas */
-    height: auto; /* Kembali ke tinggi default */
-    padding: 20px 0; /* Padding atas/bawah */
-    align-items: flex-start; /* Align ke kiri */
-}
-
-.chat-started .chat-box {
-    align-items: flex-start; /* Pesan dan input ke kiri */
-    max-width: 100vw; /* Lebar penuh viewport setelah chat dimulai */
-    background-color: #1e1e1e; /* Background chat setelah mulai */
-    padding: 0; /* Tetap tanpa padding */
 }
 
 /* Sembunyikan Elemen Saat Chat Dimulai */
@@ -504,6 +490,8 @@ svg {
 #imageInputContainer {
     margin-top: 10px;
     display: flex;
+    position: fixed;
+    overflow: hidden;
 }
 
 #imagePrompt {
@@ -516,33 +504,31 @@ svg {
 /* Wrapping container untuk input dan suggestions */
 .input-wrapper {
     position: relative;
-    width: 100vw; /* Gunakan lebar penuh viewport */
-    max-width: 100%; /* Hapus batasan max-width */
-    margin-top: 20px; /* Jarak dari pesan */
+    width: 100%;
+    margin-bottom: 15px;
     padding-left: 16px;
     border-radius: 20px;
     overflow: hidden;
     background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
-    transition: all 0.5s ease; /* Transisi untuk perubahan lebar dan posisi */
 }
 
 #suggestionsContainer {
     position: absolute;
-    top: calc(100% + 5px); /* Tambahkan jarak tambahan untuk memastikan tidak tersembunyi di bawah input */
-    left: 16px; /* Sesuaikan dengan padding-left dari .input-wrapper */
-    width: calc(100% - 32px); /* Sesuaikan dengan padding kiri/kanan */
+    top: 100%;
+    left: 0;
+    width: 100%;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgb(0, 0, 0);
     padding: 8px 0;
-    z-index: 2000;
+    margin-top: 5px;
+    z-index: 1000;
     max-height: 200px;
     overflow-y: auto;
     border: 1px solid #f503fd;
     transition: all 0.2s ease;
-    display: none;
 }
 
 .suggestion-item {
@@ -666,17 +652,25 @@ svg {
 /* Container file */
 #uploaded-files-container {
     display: none;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 8px 16px;
+    flex-wrap: wrap; /* Pastikan file berpindah baris jika tidak muat */
+    gap: 6px; /* Jarak kecil antar file */
+    padding: 8px 16px; /* Tambahkan padding kiri dan kanan untuk jarak */
     width: 100%;
-    background-color: #f5f5f5;
-    border-radius: 30px; /* Ubah menjadi radius bulat penuh (30px di semua sudut) */
-    margin-bottom: -8px;
+    background-color: #f5f5f5; /* Sama dengan background input-container */
+    border-radius: 30px 30px 0 0; /* Pastikan radius konsisten */
+    margin-bottom: -8px; /* Overlap dengan input-container */
 }
 
 #uploaded-files-container.files-visible {
     display: flex;
+}
+
+/* Pastikan container file berada di atas input chat */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-left: 16px; /* Jarak kiri tambahan untuk seluruh wrapper */
 }
 
 /* Pastikan input-container memiliki radius yang menyatu */
@@ -684,10 +678,10 @@ svg {
     display: flex;
     align-items: center;
     background: #f5f5f5;
-    border-radius: 30px; /* Ubah menjadi radius bulat penuh (30px di semua sudut) */
+    border-radius: 0 0 30px 30px; /* Radius bulat di sudut bawah */
     padding: 12px 16px;
     width: 100%;
-    margin-top: 0;
+    margin-top: 0; /* Hilangkan jarak dari container file */
 }
 
 .file-size {
@@ -747,15 +741,6 @@ svg {
     overflow: auto; /* Scroll jika konten terlalu panjang */
 }
 
-.footer-text {
-    color: aliceblue;
-    margin-top: 20px; /* Jarak dari input */
-    width: 100vw; /* Gunakan lebar penuh viewport */
-    text-align: center; /* Pusatkan teks */
-    opacity: 1; /* Pastikan tetap terlihat */
-    transition: opacity 0.5s ease; /* Transisi natural */
-}
-
 .preview-content {
     padding: 16px;
     height: 100%;
@@ -790,57 +775,11 @@ svg {
     color: #ff0000;
 }
 
-.messages::-webkit-scrollbar {
-    width: 8px; /* Lebar scroll bar */
-}
-
-.messages::-webkit-scrollbar-track {
-    background: transparent; /* Latar belakang transparan */
-}
-
-.messages::-webkit-scrollbar-thumb {
-    background: #888; /* Warna scroll bar */
-    border-radius: 4px; /* Radius kecil */
-}
-
-.messages::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Warna saat hover */
-}
-
-@media (min-width: 1200px) {
-    .chat-container {
-        padding: 0 40px; /* Margin lebih besar untuk layar besar */
-    }
-
-    .chat-box {
-        padding: 40px; /* Padding lebih besar untuk estetika */
-    }
-}
-
 @media (max-width: 600px) {
-    .chat-container {
-        padding: 0; /* Hapus padding untuk layar kecil */
-    }
-
-    .chat-box {
-        padding: 10px; /* Padding kecil untuk layar kecil */
-    }
-
-    .messages {
-        width: 100vw; /* Tetap penuh lebar viewport */
-        padding: 5px 0; /* Padding lebih kecil */
-    }
-
-    .input-wrapper {
-        width: 100vw; /* Tetap penuh lebar viewport */
-        padding-left: 8px; /* Padding lebih kecil */
-    }
-
     .uploaded-file {
-        max-width: 140px;
+        max-width: 140px; /* Lebih kecil untuk layar kecil */
     }
-
     .file-name {
-        max-width: 100px;
+        max-width: 100px; /* Lebih kecil untuk nama file di layar kecil */
     }
 }
