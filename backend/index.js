@@ -22,22 +22,20 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Suggestion container position:", suggestionsContainer.getBoundingClientRect());
 
     // Event listener untuk tombol "Create Image"
-    createImageButton.addEventListener("click", function () {
-        console.log("Tombol Create Image diklik");
-        userInput.value = "Create an image"; 
-        userInput.focus();
-        userInput.dispatchEvent(new Event('input')); // Picu event input manually
-
-        // Tampilkan saran dengan jeda kecil untuk memastikan nilai input telah diperbarui
-        setTimeout(() => {
-            showPromptSuggestions([
-                "Create an image for my presentation",
-                "Create an image of my pet",
-                "Create an image for my website",
-                "Create an image made out of felt"
-            ]);
-        }, 100);
-    });
+document.getElementById("createImageBtn").addEventListener("click", function () {
+    console.log("Tombol Create Image diklik");
+    userInput.value = "Create an image"; 
+    userInput.focus();
+    userInput.dispatchEvent(new Event('input')); // Picu event input manually
+    
+    // Test manual untuk menampilkan saran
+    showPromptSuggestions([
+        "Create an image for my presentation",
+        "Create an image of my pet",
+        "Create an image for my website",
+        "Create an image made out of felt"
+    ]);
+});
 
     // Event listener untuk input user
 userInput.addEventListener('input', function() {
@@ -236,6 +234,7 @@ function showPromptSuggestions(suggestions) {
     
     if (suggestions.length === 0) {
         suggestionsContainer.style.display = "none";
+        console.log("Tidak ada saran, container disembunyikan");
         return;
     }
 
@@ -249,11 +248,13 @@ function showPromptSuggestions(suggestions) {
             suggestionsContainer.style.display = "none";
         });
         suggestionsContainer.appendChild(suggestionItem);
+        console.log("Saran ditambahkan:", suggestion);
     });
 
     suggestionsContainer.style.display = "block";
     console.log("Container saran posisi:", suggestionsContainer.getBoundingClientRect());
     console.log("Container saran style:", window.getComputedStyle(suggestionsContainer));
+    console.log("Jumlah anak di container:", suggestionsContainer.children.length);
 }
 
     // Event listener untuk mengklik file di kolom chat
@@ -450,20 +451,24 @@ function showPromptSuggestions(suggestions) {
 
 document.getElementById("sendButton").addEventListener("click", function () {
     let userInput = document.getElementById("userInput");
-    let chatBox = document.getElementById("chat-box");
     let messages = document.querySelector(".messages");
     let chatSection = document.getElementById("chat-section");
+    let chatHeader = document.querySelector(".chat-header");
+    let quickActions = document.querySelector(".quick-actions");
 
-    // Cek apakah input tidak kosong
-    if (userInput.value.trim() !== "") {
+    // Cek apakah input tidak kosong dan belum ada pesan user sebelumnya
+    if (userInput.value.trim() !== "" && messages.querySelector(".user-message") === null) {
         // Tambahkan class untuk mengubah layout setelah chat pertama
         chatSection.classList.add("chat-started");
 
-        // Hapus elemen yang tidak diperlukan setelah pesan pertama
-        setTimeout(() => {
-            document.querySelector(".chat-header").remove();
-            document.querySelector(".quick-actions").remove();
-        }, 500);
+        // Hapus elemen yang tidak diperlukan setelah pesan pertama (tanpa delay)
+        if (chatHeader) chatHeader.remove(); // Hapus header "Chat With Your AI"
+        if (quickActions) quickActions.remove(); // Hapus quick actions
+        // Hapus pesan awal AI jika ada
+        const initialMessage = messages.querySelector("p");
+        if (initialMessage && initialMessage.textContent === "Hi! How can I help you today?") {
+            initialMessage.remove();
+        }
 
         // Tambahkan pesan user ke dalam chat
         let userMessage = document.createElement("div");
