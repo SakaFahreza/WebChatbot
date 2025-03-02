@@ -482,6 +482,8 @@ document.getElementById("sendButton").addEventListener("click", function () {
 
         // Scroll otomatis ke bawah
         messages.scrollTop = messages.scrollHeight;
+        const chatContainer = document.querySelector('.chat-container');
+chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 });
 document.getElementById("userInput").addEventListener("keydown", function (event) {
