@@ -285,16 +285,21 @@ function showPromptSuggestions(suggestions) {
     function showFilePreview(src) {
         const modal = document.getElementById("file-preview-modal");
         const previewImage = document.getElementById("preview-image");
+        
         previewImage.src = src;
         modal.style.display = "flex";
 
-        // Menutup modal saat klik di luar area gambar
-        modal.addEventListener("click", function closeModal(event) {
-            if (event.target === modal) {
+        // Tambahkan event listener untuk menutup modal saat klik gambar atau di luar modal
+        function closeModal(event) {
+            // Jika klik di luar modal atau langsung pada gambar, tutup modal
+            if (event.target === modal || event.target === previewImage) {
                 modal.style.display = "none";
                 modal.removeEventListener("click", closeModal); // Hapus listener untuk mencegah duplikat
             }
-        });
+        }
+
+        // Tambahkan event listener untuk klik pada modal
+        modal.addEventListener("click", closeModal);
     }
 
     // Fungsi baru untuk menampilkan pratinjau file non-gambar di sisi kanan

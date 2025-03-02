@@ -73,11 +73,13 @@
         <!-- Chat Section -->
         <section class="chat-section" id="chat-section" style="display: none;">
             <div class="chat-container">
-                <h2 class="chat-header">Chat With Your AI</h2>
-                <div class="chat-box" id="chat-box">
+                <h3 class="chat-header">Chat With Your AI</h3>
+                <h2 class="chat-header">Hi! How can I help you today?</h2>
                     <div class="messages">
-                        <p class="foot">Hi! How can I help you today?</p>
+                        
                     </div>
+
+                <div class="chat-box" id="chat-box">
                     <div class="input-wrapper">
                         <div id="uploaded-files-container" class="files-preview-container">
                             <!-- Files akan ditampilkan di sini -->
@@ -123,21 +125,29 @@
                         
                     </div>
                 </div>
-                <p class="foot-p" style="color: aliceblue;">By messaging Zitach, you agree to our Terms and Privacy Policy.</p>
             </div>  
+                <p class="foot-p" style="color: aliceblue;">By messaging Zitach, you agree to our Terms and Privacy Policy.</p>
         </section>
         
     </div>
 
     <script>
-        function goToChat() {
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.circle').style.display = 'none';
-            document.querySelector('.grid').style.display = 'none';
-            document.querySelector('.navbar').style.display = 'none';
-            document.querySelector('#chat-section').style.display = 'block';
+    function goToChat() {
+        document.querySelector('.hero').style.display = 'none';
+        document.querySelector('.circle').style.display = 'none';
+        document.querySelector('.grid').style.display = 'none';
+        document.querySelector('.navbar').style.display = 'none';
+        document.querySelector('#chat-section').style.display = 'block';
+
+        // Pastikan .foot-p tetap di posisi awal
+        const footP = document.querySelector('.foot-p');
+        if (footP) {
+            footP.style.position = 'fixed';
+            footP.style.bottom = '10px';
+            footP.style.left = '50%';
+            footP.style.transform = 'translateX(-50%)';
         }
-        
+    }        
 
         // function appendMessage(sender, message, className) {
         //     const chatBox = document.querySelector(".messages");
